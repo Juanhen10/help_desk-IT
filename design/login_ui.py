@@ -1,7 +1,8 @@
 from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, Qt, QSize
 from PySide6.QtGui import QFont, QPixmap, QIcon
-from PySide6.QtWidgets import QApplication, QFrame, QLabel, QLineEdit, QMainWindow, QPushButton, QVBoxLayout, QStatusBar, QWidget, QHBoxLayout, QToolButton, QGraphicsDropShadowEffect
+from PySide6.QtWidgets import QApplication, QFrame, QLabel, QLineEdit, QMainWindow, QPushButton, QVBoxLayout, QStatusBar, QWidget, QHBoxLayout, QToolButton, QGraphicsDropShadowEffect, QMessageBox
 import sys
+from user_window import Ui_MainWindow as user_window
 from PySide6.QtGui import QIntValidator
 import webbrowser
 
@@ -252,6 +253,7 @@ class Ui_MainWindow(object):
         self.likendin_btn.clicked.connect(self.redes_sociais.likendin)
         self.youtube_btn.clicked.connect(self.redes_sociais.youtube)
         self.insta_btn.clicked.connect(self.redes_sociais.insta)
+        
 
     # Manipulação dos botões - clicagem dos links 
     class redes_sociais:
@@ -266,10 +268,20 @@ class Ui_MainWindow(object):
         def youtube():
             webbrowser.open("https://www.youtube.com/user/webfoco")
         
- 
+     # Este método verifica o PIN digitado e inicia a nova aplicação se o PIN estiver correto
     def login(self):
-        # Método que será chamado quando o botão for clicado
-        print("Botão foi clicado!")
+       # Este método verifica o PIN digitado e inicia a nova aplicação se o PIN estiver correto
+        pin = self.loginPin.text().strip()
+        if pin == "1234":  # Substitua por sua lógica de autenticação
+            # Fechar a janela de login
+            MainWindow.close()
+
+            # Abrir a nova aplicação
+            from user_window import Ui_MainWindow  # Supondo que Ui_MainWindow seja sua janela principal
+            self.nova_app = QMainWindow()
+            ui_main_window = Ui_MainWindow()
+            ui_main_window.setupUi(self.nova_app)
+            self.nova_app.show()
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "SUPORTE WB.P", None))
