@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setEnabled(True)
         
         
-        # BACKGROUND (fundo)
+        # BACKGROUND (fundo)'
         self.background_frame = QFrame(self.centralwidget)
         self.background_frame.setObjectName("background_frame")
         self.background_frame.setGeometry(QRect(5, 5, 312, 312))
